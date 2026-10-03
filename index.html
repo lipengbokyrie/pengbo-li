@@ -455,22 +455,22 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
 
   <section id="certifications">
     <div class="wrap">
-      <h2 class="display reveal">Certifications</h2>
+      <h2 class="display reveal" data-i18n="cert.h2">Certifications</h2>
       <div class="cert-grid">
         <div class="cert-card reveal">
-          <div class="cert-doc"><img src="assets/cert-ibus7306.png" alt="Certificate of Excellence, UQ Business School, IBUS7306" width="595" height="842" loading="lazy"></div>
+          <div class="cert-doc"><img src="assets/cert-ibus7306.png" alt="Certificate of Excellence, UQ Business School, IBUS7306" width="595" height="842" loading="lazy" data-i18n-alt="cert1.alt"></div>
           <div class="ct">
-            <h3>Certificate of Excellence, UQ Business School</h3>
+            <h3 data-i18n="cert1.title">Certificate of Excellence, UQ Business School</h3>
             <p class="code">IBUS7306</p>
-            <p class="note">Awarded during the Master of Business program at The University of Queensland.</p>
+            <p class="note" data-i18n="cert1.note">Awarded during the Master of Business program at The University of Queensland.</p>
           </div>
         </div>
         <div class="cert-card reveal">
-          <div class="cert-doc"><img src="assets/cert-mgts7621.png" alt="Career Transition recognition, UQ Business School, MGTS7621" width="596" height="842" loading="lazy"></div>
+          <div class="cert-doc"><img src="assets/cert-mgts7621.png" alt="Career Transition recognition, UQ Business School, MGTS7621" width="596" height="842" loading="lazy" data-i18n-alt="cert2.alt"></div>
           <div class="ct">
-            <h3>Career Transition Recognition</h3>
+            <h3 data-i18n="cert2.title">Career Transition Recognition</h3>
             <p class="code">MGTS7621</p>
-            <p class="note">Awarded during the Master of Business program at The University of Queensland.</p>
+            <p class="note" data-i18n="cert2.note">Awarded during the Master of Business program at The University of Queensland.</p>
           </div>
         </div>
       </div>
@@ -571,6 +571,13 @@ var I18N = {
     "edu.western.meta": "London, Canada · Sep 2018 - Apr 2023",
     "edu.western.detail": "Coursework: Econometrics, Business Analytics, Statistics, International Finance, Accounting.",
     "skills.h2": "Skills",
+    "cert.h2": "Certifications",
+    "cert1.title": "Certificate of Excellence, UQ Business School",
+    "cert1.note": "Awarded during the Master of Business program at The University of Queensland.",
+    "cert1.alt": "Certificate of Excellence, UQ Business School, IBUS7306",
+    "cert2.title": "Career Transition Recognition",
+    "cert2.note": "Awarded during the Master of Business program at The University of Queensland.",
+    "cert2.alt": "Career Transition recognition, UQ Business School, MGTS7621",
     "skills.s1.title": "Data & Analytics",
     "skills.s2.title": "Consulting Frameworks",
     "skills.s3.title": "AI Agent Tools",
@@ -600,7 +607,7 @@ var I18N = {
     "nav.about": "关于我",
     "nav.experience": "工作经历",
     "nav.education": "教育背景",
-    "nav.certifications": "Certifications",
+    "nav.certifications": "荣誉证书",
     "nav.email": "邮件联系",
     "hero.subtext": "工商管理硕士毕业生，拥有中国、加拿大和澳大利亚的国际经历，正在寻求咨询与国际商务领域的工作机会。",
     "hero.name": "李鹏博",
@@ -634,12 +641,19 @@ var I18N = {
     "edu.uq.school": "昆士兰大学",
     "edu.uq.degree": "工商管理硕士",
     "edu.uq.meta": "澳大利亚布里斯班 · 2024年7月 - 2026年6月",
-    "edu.uq.detail": "双专业：国际商务与创新创业。CGPA 5.65 / 7.0。Honors: Certificate of Excellence, UQ Business School (IBUS7306); Career Transition recognition (MGTS7621)。",
+    "edu.uq.detail": "双专业：国际商务与创新创业。CGPA 5.65 / 7.0。荣誉：昆士兰大学商学院卓越证书（IBUS7306）；职业转型认可（MGTS7621）。",
     "edu.western.school": "西安大略大学",
     "edu.western.degree": "经济学文学学士",
     "edu.western.meta": "加拿大伦敦 · 2018年9月 - 2023年4月",
     "edu.western.detail": "课程：计量经济学、商业分析、统计学、国际金融、会计。",
     "skills.h2": "技能",
+    "cert.h2": "荣誉证书",
+    "cert1.title": "昆士兰大学商学院卓越证书",
+    "cert1.note": "于昆士兰大学工商管理硕士课程期间获得。",
+    "cert1.alt": "昆士兰大学商学院卓越证书，IBUS7306",
+    "cert2.title": "职业转型认可",
+    "cert2.note": "于昆士兰大学工商管理硕士课程期间获得。",
+    "cert2.alt": "职业转型认可，昆士兰大学商学院，MGTS7621",
     "skills.s1.title": "数据分析",
     "skills.s2.title": "咨询分析框架",
     "skills.s3.title": "AI 智能体工具",
@@ -677,6 +691,10 @@ var I18N = {
     document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
       var key = el.getAttribute("data-i18n-html");
       if (dict[key] != null) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-alt");
+      if (dict[key] != null) el.setAttribute("alt", dict[key]);
     });
     document.documentElement.lang = (lang === "zh") ? "zh-CN" : "en";
     document.querySelectorAll(".lang-btn").forEach(function (btn) {
