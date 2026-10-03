@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pengbo Li</title>
+<title data-i18n="title">Pengbo Li</title>
 <meta name="description" content="Personal site of Pengbo Li, Master of Business graduate from The University of Queensland, seeking roles in consulting, strategy and international business.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -301,7 +301,7 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
 
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="#top">Pengbo Li</a>
+    <a class="brand" href="#top" data-i18n="brand">Pengbo Li</a>
     <nav class="nav-links" aria-label="Main">
       <a href="#about" data-i18n="nav.about">About</a>
       <a href="#experience" data-i18n="nav.experience">Experience</a>
@@ -323,7 +323,7 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">Master of Business · Class of 2026</p>
-        <h1 class="display">Pengbo Li</h1>
+        <h1 class="display" data-i18n="hero.name">Pengbo Li</h1>
         <p class="lead subtext" data-i18n="hero.subtext">Master of Business graduate with international experience across China, Canada and Australia, seeking consulting and international business roles.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="mailto:lipengbokyrie@gmail.com" data-i18n="hero.email">Email me</a>
@@ -514,7 +514,7 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
 
 <footer>
   <div class="wrap foot">
-    <p>© 2026 Pengbo Li</p>
+    <p data-i18n="footer.copyright">© 2026 Pengbo Li</p>
     <p><a href="https://www.linkedin.com/in/pengbo-li-19b215273" target="_blank" rel="noopener">LinkedIn</a></p>
     <p data-i18n-html="footer.credit">Campus photos via <a href="https://commons.wikimedia.org/wiki/File:Buildings_surrounding_the_Great_Court,_University_of_Queensland_03.jpg">Wikimedia Commons</a> (CC BY-SA 4.0)</p>
   </div>
@@ -526,12 +526,15 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
 // languages, by design. Persists in localStorage; ?lang=zh|en overrides.
 var I18N = {
   en: {
+    "title": "Pengbo Li",
+    "brand": "Pengbo Li",
     "nav.about": "About",
     "nav.experience": "Experience",
     "nav.education": "Education",
     "nav.certifications": "Certifications",
     "nav.email": "Email me",
     "hero.subtext": "Master of Business graduate with international experience across China, Canada and Australia, seeking consulting and international business roles.",
+    "hero.name": "Pengbo Li",
     "hero.email": "Email me",
     "hero.resume": "Download resume",
     "about.h2": "About me",
@@ -588,15 +591,19 @@ var I18N = {
     "contact.email": "Email me",
     "contact.resume": "Download resume",
     "contact.location": "Xuchang, Henan, China",
+    "footer.copyright": "© 2026 Pengbo Li",
     "footer.credit": "Campus photos via <a href=\"https://commons.wikimedia.org/wiki/File:Buildings_surrounding_the_Great_Court,_University_of_Queensland_03.jpg\">Wikimedia Commons</a> (CC BY-SA 4.0)"
   },
   zh: {
+    "title": "李鹏博",
+    "brand": "李鹏博",
     "nav.about": "关于我",
     "nav.experience": "工作经历",
     "nav.education": "教育背景",
     "nav.certifications": "Certifications",
     "nav.email": "邮件联系",
     "hero.subtext": "工商管理硕士毕业生，拥有中国、加拿大和澳大利亚的国际经历，正在寻求咨询与国际商务领域的工作机会。",
+    "hero.name": "李鹏博",
     "hero.email": "邮件联系",
     "hero.resume": "下载简历",
     "about.h2": "关于我",
@@ -653,6 +660,7 @@ var I18N = {
     "contact.email": "邮件联系",
     "contact.resume": "下载简历",
     "contact.location": "中国河南许昌",
+    "footer.copyright": "© 2026 李鹏博",
     "footer.credit": "校园照片来自 <a href=\"https://commons.wikimedia.org/wiki/File:Buildings_surrounding_the_Great_Court,_University_of_Queensland_03.jpg\">Wikimedia Commons</a>（CC BY-SA 4.0）"
   }
 };
