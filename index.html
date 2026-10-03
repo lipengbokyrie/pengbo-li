@@ -26,8 +26,8 @@
   --accent-ink: #ffffff;
   --line: #e2e4de;
   --radius: 14px;
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-body: "Outfit", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Cormorant Garamond", "Songti SC", "Noto Serif SC", Georgia, serif;
+  --font-body: "Outfit", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -126,9 +126,37 @@ h2.display {
 .nav-links a { font-size: 0.92rem; font-weight: 400; color: var(--muted); transition: color 0.2s ease; }
 .nav-links a:hover { color: var(--ink); }
 .nav-links .btn { padding: 8px 18px; font-size: 0.88rem; margin-left: 6px; }
+.nav-links a.btn-primary { color: var(--accent-ink); }
 @media (max-width: 720px) {
   .nav-links a:not(.btn) { display: none; }
 }
+@media (max-width: 480px) {
+  .nav-links .btn { display: none; }
+}
+
+/* language toggle */
+.lang {
+  display: flex; align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px;
+  margin-left: 18px;
+  background: var(--surface);
+  flex-shrink: 0;
+}
+.lang-btn {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 5px 13px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.lang-btn.active { background: var(--accent); color: var(--accent-ink); }
 
 /* ---------- hero ---------- */
 .hero { padding: 88px 0 72px; }
@@ -237,14 +265,18 @@ section + section, .band + section { border-top: 1px solid var(--line); }
 @media (max-width: 860px) { .cert-grid { grid-template-columns: 1fr; } .cert-card { grid-template-columns: 1fr; max-width: 420px; } }
 
 /* life */
-.life-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-.life-grid .p3 { margin-top: 36px; }
-.life-grid figure { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+.life-grid { columns: 2; column-gap: 16px; }
+.life-grid figure {
+  break-inside: avoid;
+  margin: 0 0 16px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
 .life-grid img { width: 100%; height: auto; display: block; }
-.interests { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px; }
+.interests { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
 @media (max-width: 640px) {
-  .life-grid { grid-template-columns: 1fr; }
-  .life-grid .p3 { margin-top: 0; }
+  .life-grid { columns: 1; }
 }
 
 /* contact */
@@ -271,13 +303,17 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
   <div class="nav-inner">
     <a class="brand" href="#top">Pengbo Li</a>
     <nav class="nav-links" aria-label="Main">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#certifications">Certifications</a>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#experience" data-i18n="nav.experience">Experience</a>
+      <a href="#education" data-i18n="nav.education">Education</a>
+      <a href="#certifications" data-i18n="nav.certifications">Certifications</a>
       <a href="https://www.linkedin.com/in/pengbo-li-19b215273" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn btn-primary" href="mailto:lipengbokyrie@gmail.com">Email me</a>
+      <a class="btn btn-primary" href="mailto:lipengbokyrie@gmail.com" data-i18n="nav.email">Email me</a>
     </nav>
+    <div class="lang" role="group" aria-label="Language / 语言">
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" class="lang-btn" data-lang="zh" aria-pressed="false">中文</button>
+    </div>
   </div>
 </header>
 
@@ -288,30 +324,30 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
       <div>
         <p class="eyebrow">Master of Business · Class of 2026</p>
         <h1 class="display">Pengbo Li</h1>
-        <p class="lead subtext">Master of Business graduate with international experience across China, Canada and Australia, seeking consulting and international business roles.</p>
+        <p class="lead subtext" data-i18n="hero.subtext">Master of Business graduate with international experience across China, Canada and Australia, seeking consulting and international business roles.</p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="mailto:lipengbokyrie@gmail.com">Email me</a>
-          <a class="btn btn-ghost" href="resume/Pengbo-Li-Resume.pdf" download>Download resume</a>
+          <a class="btn btn-primary" href="mailto:lipengbokyrie@gmail.com" data-i18n="hero.email">Email me</a>
+          <a class="btn btn-ghost" href="resume/Pengbo-Li-Resume.pdf" download data-i18n="hero.resume">Download resume</a>
         </div>
       </div>
       <figure class="hero-fig">
-        <img src="assets/photo-1.jpg" alt="Photo of Pengbo Li" width="933" height="1400">
+        <img src="assets/photo-3.jpg" alt="Pengbo Li holding his graduation cap in a sandstone corridor" width="1600" height="1066">
       </figure>
     </div>
   </section>
 
   <section id="about">
     <div class="wrap">
-      <h2 class="display reveal">About me</h2>
+      <h2 class="display reveal" data-i18n="about.h2">About me</h2>
       <div class="about-grid">
         <div class="lead reveal">
-          <p>I am a Master of Business graduate from <strong>The University of Queensland</strong>, with a double major in International Business &amp; Innovation and Entrepreneurship, and international experience across China, Canada and Australia.</p>
-          <p>My practical experience spans procurement and supplier management in semiconductor manufacturing, business development, and financial advisory. I combine structured analytical frameworks with AI agent tools in my daily workflow, and I am seeking roles in consulting, strategy, international business and AI-related fields.</p>
+          <p data-i18n-html="about.p1">I am a Master of Business graduate from <strong>The University of Queensland</strong>, with a double major in International Business &amp; Innovation and Entrepreneurship, and international experience across China, Canada and Australia.</p>
+          <p data-i18n="about.p2">My practical experience spans procurement and supplier management in semiconductor manufacturing, business development, and financial advisory. I combine structured analytical frameworks with AI agent tools in my daily workflow, and I am seeking roles in consulting, strategy, international business and AI-related fields.</p>
         </div>
         <div class="facts reveal">
-          <div class="fact"><p class="k">Location</p><p class="v">Xuchang, Henan, China</p></div>
-          <div class="fact"><p class="k">Availability</p><p class="v">Open to Shanghai and business travel</p></div>
-          <div class="fact"><p class="k">Languages</p><p class="v">Mandarin (native), English (professional working proficiency)</p></div>
+          <div class="fact"><p class="k" data-i18n="about.fact-location-k">Location</p><p class="v" data-i18n="about.fact-location-v">Xuchang, Henan, China</p></div>
+          <div class="fact"><p class="k" data-i18n="about.fact-avail-k">Availability</p><p class="v" data-i18n="about.fact-avail-v">Open to Shanghai and business travel</p></div>
+          <div class="fact"><p class="k" data-i18n="about.fact-lang-k">Languages</p><p class="v" data-i18n="about.fact-lang-v">Mandarin (native), English (professional working proficiency)</p></div>
           <div class="fact"><p class="k">LinkedIn</p><p class="v"><a href="https://www.linkedin.com/in/pengbo-li-19b215273" target="_blank" rel="noopener">linkedin.com/in/pengbo-li-19b215273</a></p></div>
         </div>
       </div>
@@ -320,40 +356,40 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
 
   <section id="experience">
     <div class="wrap">
-      <h2 class="display reveal">Experience</h2>
+      <h2 class="display reveal" data-i18n="exp.h2">Experience</h2>
 
       <div class="job reveal">
         <div>
-          <p class="title">Anhui Changfei Advanced Semiconductor Co., Ltd.</p>
-          <p class="meta">Purchasing Engineer · Wuhu, China</p>
+          <p class="title" data-i18n="exp.j1.title">Anhui Changfei Advanced Semiconductor Co., Ltd.</p>
+          <p class="meta" data-i18n="exp.j1.meta">Purchasing Engineer · Wuhu, China</p>
         </div>
-        <p class="period">Oct 2023 - Jun 2024</p>
+        <p class="period" data-i18n="exp.j1.period">Oct 2023 - Jun 2024</p>
         <ul>
-          <li>Managed end-to-end procurement plus supplier quality and risk assessments for a semiconductor packaging facility, coordinating internal technical teams and external suppliers to protect production schedules.</li>
-          <li>Analyzed procurement data across spare parts, tooling, consumables and outsourced manufacturing to locate cost-driver root causes, collaborating with packaging engineers on cost-reduction initiatives.</li>
+          <li data-i18n="exp.j1.l1">Managed end-to-end procurement plus supplier quality and risk assessments for a semiconductor packaging facility, coordinating internal technical teams and external suppliers to protect production schedules.</li>
+          <li data-i18n="exp.j1.l2">Analyzed procurement data across spare parts, tooling, consumables and outsourced manufacturing to locate cost-driver root causes, collaborating with packaging engineers on cost-reduction initiatives.</li>
         </ul>
       </div>
 
       <div class="job reveal">
         <div>
-          <p class="title">Hercules Investment Group</p>
-          <p class="meta">Financial Advisor Assistant Intern · Toronto, Canada</p>
+          <p class="title" data-i18n="exp.j2.title">Hercules Investment Group</p>
+          <p class="meta" data-i18n="exp.j2.meta">Financial Advisor Assistant Intern · Toronto, Canada</p>
         </div>
-        <p class="period">May 2022 - Aug 2022</p>
+        <p class="period" data-i18n="exp.j2.period">May 2022 - Aug 2022</p>
         <ul>
-          <li>Collected and analyzed housing market and client financial data to identify financing needs, independently completing mortgage planning proposals for 8 client projects.</li>
-          <li>Built data visualizations to help portfolio managers explain HELOC and debt-financing options to clients with varying financial literacy.</li>
+          <li data-i18n="exp.j2.l1">Collected and analyzed housing market and client financial data to identify financing needs, independently completing mortgage planning proposals for 8 client projects.</li>
+          <li data-i18n="exp.j2.l2">Built data visualizations to help portfolio managers explain HELOC and debt-financing options to clients with varying financial literacy.</li>
         </ul>
       </div>
 
       <div class="job reveal">
         <div>
-          <p class="title">Zhongzhen Security Technology Co., Ltd.</p>
-          <p class="meta">Business Development Intern · Xuchang, China</p>
+          <p class="title" data-i18n="exp.j3.title">Zhongzhen Security Technology Co., Ltd.</p>
+          <p class="meta" data-i18n="exp.j3.meta">Business Development Intern · Xuchang, China</p>
         </div>
-        <p class="period">Apr 2021 - Sep 2021</p>
+        <p class="period" data-i18n="exp.j3.period">Apr 2021 - Sep 2021</p>
         <ul>
-          <li>Delivered customized security-camera solution proposals and coordinated delivery teams to complete 10+ projects on schedule, contributing to sales exceeding CNY 1,000,000.</li>
+          <li data-i18n="exp.j3.l1">Delivered customized security-camera solution proposals and coordinated delivery teams to complete 10+ projects on schedule, contributing to sales exceeding CNY 1,000,000.</li>
         </ul>
       </div>
     </div>
@@ -361,24 +397,24 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
 
   <section id="education">
     <div class="wrap">
-      <h2 class="display reveal">Education</h2>
+      <h2 class="display reveal" data-i18n="edu.h2">Education</h2>
       <div class="edu-grid">
         <article class="edu-card reveal">
           <div class="ph"><img src="assets/uq-campus.jpg" alt="The sandstone Great Court at The University of Queensland, St Lucia campus" width="1600" height="1200" loading="lazy"></div>
           <div class="bd">
-            <p class="school">The University of Queensland</p>
-            <p class="degree">Master of Business</p>
-            <p class="meta">Brisbane, Australia · Jul 2024 - Jun 2026</p>
-            <p class="detail">Double Major: International Business &amp; Innovation and Entrepreneurship. CGPA 5.65 / 7.0. Honors: Certificate of Excellence, UQ Business School (IBUS7306); Career Transition recognition (MGTS7621).</p>
+            <p class="school" data-i18n="edu.uq.school">The University of Queensland</p>
+            <p class="degree" data-i18n="edu.uq.degree">Master of Business</p>
+            <p class="meta" data-i18n="edu.uq.meta">Brisbane, Australia · Jul 2024 - Jun 2026</p>
+            <p class="detail" data-i18n="edu.uq.detail">Double Major: International Business &amp; Innovation and Entrepreneurship. CGPA 5.65 / 7.0. Honors: Certificate of Excellence, UQ Business School (IBUS7306); Career Transition recognition (MGTS7621).</p>
           </div>
         </article>
         <article class="edu-card reveal">
           <div class="ph"><img src="assets/western-campus.jpg" alt="University College, the historic main building of Western University in London, Canada" width="1200" height="1600" loading="lazy"></div>
           <div class="bd">
-            <p class="school">Western University</p>
-            <p class="degree">Bachelor of Arts, Economics</p>
-            <p class="meta">London, Canada · Sep 2018 - Apr 2023</p>
-            <p class="detail">Coursework: Econometrics, Business Analytics, Statistics, International Finance, Accounting.</p>
+            <p class="school" data-i18n="edu.western.school">Western University</p>
+            <p class="degree" data-i18n="edu.western.degree">Bachelor of Arts, Economics</p>
+            <p class="meta" data-i18n="edu.western.meta">London, Canada · Sep 2018 - Apr 2023</p>
+            <p class="detail" data-i18n="edu.western.detail">Coursework: Econometrics, Business Analytics, Statistics, International Finance, Accounting.</p>
           </div>
         </article>
       </div>
@@ -387,28 +423,28 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
 
   <section id="skills">
     <div class="wrap">
-      <h2 class="display reveal">Skills</h2>
+      <h2 class="display reveal" data-i18n="skills.h2">Skills</h2>
       <div class="skills-grid">
         <div class="skill-tile reveal">
-          <h3>Data &amp; Analytics</h3>
+          <h3 data-i18n="skills.s1.title">Data &amp; Analytics</h3>
           <div class="tags">
             <span class="tag">Microsoft Excel</span><span class="tag">PowerPoint</span><span class="tag">Word</span><span class="tag">R programming</span><span class="tag">Data visualization</span><span class="tag">Quantitative analysis</span>
           </div>
         </div>
         <div class="skill-tile reveal">
-          <h3>Consulting Frameworks</h3>
+          <h3 data-i18n="skills.s2.title">Consulting Frameworks</h3>
           <div class="tags">
             <span class="tag">PESTEL</span><span class="tag">Porter's Five Forces</span><span class="tag">VRIN / VRIO</span><span class="tag">Business model analysis</span><span class="tag">Stakeholder analysis</span>
           </div>
         </div>
         <div class="skill-tile reveal">
-          <h3>AI Agent Tools</h3>
+          <h3 data-i18n="skills.s3.title">AI Agent Tools</h3>
           <div class="tags">
             <span class="tag">Claude Code</span><span class="tag">ChatGPT</span><span class="tag">DeepSeek</span><span class="tag">VS Code</span><span class="tag">Prompt engineering</span><span class="tag">AI programming</span>
           </div>
         </div>
         <div class="skill-tile reveal">
-          <h3>Languages</h3>
+          <h3 data-i18n="skills.s4.title">Languages</h3>
           <div class="tags">
             <span class="tag">Mandarin Chinese (native)</span><span class="tag">English (fluent professional working proficiency)</span>
           </div>
@@ -443,30 +479,33 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
 
   <section id="life">
     <div class="wrap">
-      <h2 class="display reveal">Life &amp; interests</h2>
+      <h2 class="display reveal" data-i18n="life.h2">Life &amp; interests</h2>
       <div class="life-grid">
-        <figure class="p2 reveal"><img src="assets/photo-2.jpg" alt="Personal photo" width="1400" height="1050" loading="lazy"></figure>
-        <figure class="p3 reveal"><img src="assets/photo-3.jpg" alt="Personal photo" width="1600" height="1066" loading="lazy"></figure>
+        <figure class="p1 reveal"><img src="assets/photo-1.jpg" alt="Pengbo Li in graduation gown on a university lawn" width="933" height="1400" loading="lazy"></figure>
+        <figure class="p4 reveal"><img src="assets/photo-4.jpg" alt="Pengbo Li at the beach" width="1600" height="1060" loading="lazy"></figure>
+        <figure class="p5 reveal"><img src="assets/photo-5.jpg" alt="Pengbo Li at a lakeside mountain view" width="1049" height="1400" loading="lazy"></figure>
+        <figure class="p2 reveal"><img src="assets/photo-2.jpg" alt="Pengbo Li in graduation gown in a sandstone corridor" width="1050" height="1400" loading="lazy"></figure>
+        <figure class="p6 reveal"><img src="assets/photo-6.jpg" alt="Pengbo Li playing tennis" width="933" height="1400" loading="lazy"></figure>
       </div>
       <div class="interests reveal">
-        <span class="tag">Tennis</span><span class="tag">Basketball</span><span class="tag">Gym</span><span class="tag">Reading</span><span class="tag">Exploring AI tools</span><span class="tag">History</span><span class="tag">Networking</span><span class="tag">Arts</span><span class="tag">Entrepreneurial events</span><span class="tag">Music</span>
+        <span class="tag" data-i18n="life.i1">Tennis</span><span class="tag" data-i18n="life.i2">Basketball</span><span class="tag" data-i18n="life.i3">Gym</span><span class="tag" data-i18n="life.i4">Reading</span><span class="tag" data-i18n="life.i5">Exploring AI tools</span><span class="tag" data-i18n="life.i6">History</span><span class="tag" data-i18n="life.i7">Networking</span><span class="tag" data-i18n="life.i8">Arts</span><span class="tag" data-i18n="life.i9">Entrepreneurial events</span><span class="tag" data-i18n="life.i10">Music</span>
       </div>
     </div>
   </section>
 
   <section id="contact" class="contact">
     <div class="wrap">
-      <h2 class="display reveal">Let's talk.</h2>
-      <p class="lead reveal">I am currently exploring full-time opportunities in consulting, strategy and international business, with a strong interest in AI-enabled ways of working. The fastest way to reach me is email.</p>
+      <h2 class="display reveal" data-i18n="contact.h2">Let's talk.</h2>
+      <p class="lead reveal" data-i18n="contact.lead">I am currently exploring full-time opportunities in consulting, strategy and international business, with a strong interest in AI-enabled ways of working. The fastest way to reach me is email.</p>
       <div class="hero-ctas reveal">
-        <a class="btn btn-primary" href="mailto:lipengbokyrie@gmail.com">Email me</a>
-        <a class="btn btn-ghost" href="resume/Pengbo-Li-Resume.pdf" download>Download resume</a>
+        <a class="btn btn-primary" href="mailto:lipengbokyrie@gmail.com" data-i18n="contact.email">Email me</a>
+        <a class="btn btn-ghost" href="resume/Pengbo-Li-Resume.pdf" download data-i18n="contact.resume">Download resume</a>
       </div>
       <p class="contact-meta reveal">
         <a href="mailto:lipengbokyrie@gmail.com">lipengbokyrie@gmail.com</a>
         <a href="tel:+8615913690856">+86 159 9361 0856</a>
         <a href="https://www.linkedin.com/in/pengbo-li-19b215273" target="_blank" rel="noopener">LinkedIn</a>
-        <span>Xuchang, Henan, China</span>
+        <span data-i18n="contact.location">Xuchang, Henan, China</span>
       </p>
     </div>
   </section>
@@ -477,11 +516,190 @@ footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
   <div class="wrap foot">
     <p>© 2026 Pengbo Li</p>
     <p><a href="https://www.linkedin.com/in/pengbo-li-19b215273" target="_blank" rel="noopener">LinkedIn</a></p>
-    <p>Campus photos via <a href="https://commons.wikimedia.org/wiki/File:Buildings_surrounding_the_Great_Court,_University_of_Queensland_03.jpg">Wikimedia Commons</a> (CC BY-SA 4.0)</p>
+    <p data-i18n-html="footer.credit">Campus photos via <a href="https://commons.wikimedia.org/wiki/File:Buildings_surrounding_the_Great_Court,_University_of_Queensland_03.jpg">Wikimedia Commons</a> (CC BY-SA 4.0)</p>
   </div>
 </footer>
 
 <script>
+// Language switching. EN is the default. Certifications and proper nouns
+// (degree titles, cert names, skill keywords) stay in English in both
+// languages, by design. Persists in localStorage; ?lang=zh|en overrides.
+var I18N = {
+  en: {
+    "nav.about": "About",
+    "nav.experience": "Experience",
+    "nav.education": "Education",
+    "nav.certifications": "Certifications",
+    "nav.email": "Email me",
+    "hero.subtext": "Master of Business graduate with international experience across China, Canada and Australia, seeking consulting and international business roles.",
+    "hero.email": "Email me",
+    "hero.resume": "Download resume",
+    "about.h2": "About me",
+    "about.p1": "I am a Master of Business graduate from <strong>The University of Queensland</strong>, with a double major in International Business &amp; Innovation and Entrepreneurship, and international experience across China, Canada and Australia.",
+    "about.p2": "My practical experience spans procurement and supplier management in semiconductor manufacturing, business development, and financial advisory. I combine structured analytical frameworks with AI agent tools in my daily workflow, and I am seeking roles in consulting, strategy, international business and AI-related fields.",
+    "about.fact-location-k": "Location",
+    "about.fact-location-v": "Xuchang, Henan, China",
+    "about.fact-avail-k": "Availability",
+    "about.fact-avail-v": "Open to Shanghai and business travel",
+    "about.fact-lang-k": "Languages",
+    "about.fact-lang-v": "Mandarin (native), English (professional working proficiency)",
+    "exp.h2": "Experience",
+    "exp.j1.title": "Anhui Changfei Advanced Semiconductor Co., Ltd.",
+    "exp.j1.meta": "Purchasing Engineer · Wuhu, China",
+    "exp.j1.period": "Oct 2023 - Jun 2024",
+    "exp.j1.l1": "Managed end-to-end procurement plus supplier quality and risk assessments for a semiconductor packaging facility, coordinating internal technical teams and external suppliers to protect production schedules.",
+    "exp.j1.l2": "Analyzed procurement data across spare parts, tooling, consumables and outsourced manufacturing to locate cost-driver root causes, collaborating with packaging engineers on cost-reduction initiatives.",
+    "exp.j2.title": "Hercules Investment Group",
+    "exp.j2.meta": "Financial Advisor Assistant Intern · Toronto, Canada",
+    "exp.j2.period": "May 2022 - Aug 2022",
+    "exp.j2.l1": "Collected and analyzed housing market and client financial data to identify financing needs, independently completing mortgage planning proposals for 8 client projects.",
+    "exp.j2.l2": "Built data visualizations to help portfolio managers explain HELOC and debt-financing options to clients with varying financial literacy.",
+    "exp.j3.title": "Zhongzhen Security Technology Co., Ltd.",
+    "exp.j3.meta": "Business Development Intern · Xuchang, China",
+    "exp.j3.period": "Apr 2021 - Sep 2021",
+    "exp.j3.l1": "Delivered customized security-camera solution proposals and coordinated delivery teams to complete 10+ projects on schedule, contributing to sales exceeding CNY 1,000,000.",
+    "edu.h2": "Education",
+    "edu.uq.school": "The University of Queensland",
+    "edu.uq.degree": "Master of Business",
+    "edu.uq.meta": "Brisbane, Australia · Jul 2024 - Jun 2026",
+    "edu.uq.detail": "Double Major: International Business & Innovation and Entrepreneurship. CGPA 5.65 / 7.0. Honors: Certificate of Excellence, UQ Business School (IBUS7306); Career Transition recognition (MGTS7621).",
+    "edu.western.school": "Western University",
+    "edu.western.degree": "Bachelor of Arts, Economics",
+    "edu.western.meta": "London, Canada · Sep 2018 - Apr 2023",
+    "edu.western.detail": "Coursework: Econometrics, Business Analytics, Statistics, International Finance, Accounting.",
+    "skills.h2": "Skills",
+    "skills.s1.title": "Data & Analytics",
+    "skills.s2.title": "Consulting Frameworks",
+    "skills.s3.title": "AI Agent Tools",
+    "skills.s4.title": "Languages",
+    "life.h2": "Life & interests",
+    "life.i1": "Tennis",
+    "life.i2": "Basketball",
+    "life.i3": "Gym",
+    "life.i4": "Reading",
+    "life.i5": "Exploring AI tools",
+    "life.i6": "History",
+    "life.i7": "Networking",
+    "life.i8": "Arts",
+    "life.i9": "Entrepreneurial events",
+    "life.i10": "Music",
+    "contact.h2": "Let's talk.",
+    "contact.lead": "I am currently exploring full-time opportunities in consulting, strategy and international business, with a strong interest in AI-enabled ways of working. The fastest way to reach me is email.",
+    "contact.email": "Email me",
+    "contact.resume": "Download resume",
+    "contact.location": "Xuchang, Henan, China",
+    "footer.credit": "Campus photos via <a href=\"https://commons.wikimedia.org/wiki/File:Buildings_surrounding_the_Great_Court,_University_of_Queensland_03.jpg\">Wikimedia Commons</a> (CC BY-SA 4.0)"
+  },
+  zh: {
+    "nav.about": "关于我",
+    "nav.experience": "工作经历",
+    "nav.education": "教育背景",
+    "nav.certifications": "Certifications",
+    "nav.email": "邮件联系",
+    "hero.subtext": "工商管理硕士毕业生，拥有中国、加拿大和澳大利亚的国际经历，正在寻求咨询与国际商务领域的工作机会。",
+    "hero.email": "邮件联系",
+    "hero.resume": "下载简历",
+    "about.h2": "关于我",
+    "about.p1": "我是<strong>昆士兰大学</strong>工商管理硕士毕业生，主修国际商务与创新创业双专业，拥有中国、加拿大和澳大利亚的国际经历。",
+    "about.p2": "我的实务经验涵盖半导体制造业的采购与供应商管理、商务拓展与金融咨询。在日常工作中我将结构化分析框架与 AI 智能体工具结合使用，目前正在寻求咨询、战略、国际商务及 AI 相关领域的职位。",
+    "about.fact-location-k": "所在地",
+    "about.fact-location-v": "中国河南许昌",
+    "about.fact-avail-k": "求职意向",
+    "about.fact-avail-v": "接受上海工作地点及商务差旅",
+    "about.fact-lang-k": "语言",
+    "about.fact-lang-v": "普通话（母语）、英语（专业工作水平）",
+    "exp.h2": "工作经历",
+    "exp.j1.title": "安徽长飞先进半导体有限公司",
+    "exp.j1.meta": "采购工程师 · 中国芜湖",
+    "exp.j1.period": "2023年10月 - 2024年6月",
+    "exp.j1.l1": "负责半导体封装工厂的端到端采购及供应商质量与风险评估，协调内部技术团队与外部供应商，保障生产计划按期执行。",
+    "exp.j1.l2": "分析备件、工装、耗材及委外制造等采购数据，定位成本驱动因素，并与封装工程师协作推进降本方案。",
+    "exp.j2.title": "Hercules Investment Group",
+    "exp.j2.meta": "理财顾问助理实习生 · 加拿大多伦多",
+    "exp.j2.period": "2022年5月 - 2022年8月",
+    "exp.j2.l1": "收集并分析住房市场与客户财务数据，识别融资需求，独立为 8 个客户项目完成按揭贷款规划方案。",
+    "exp.j2.l2": "制作数据可视化图表，帮助投资组合经理向不同金融素养背景的客户讲解 HELOC 与债务融资方案。",
+    "exp.j3.title": "中振安防科技有限公司",
+    "exp.j3.meta": "商务拓展实习生 · 中国许昌",
+    "exp.j3.period": "2021年4月 - 2021年9月",
+    "exp.j3.l1": "提供定制化安防监控解决方案并协调交付团队，按期完成 10 余个项目，助力累计销售额突破人民币 100 万元。",
+    "edu.h2": "教育背景",
+    "edu.uq.school": "昆士兰大学",
+    "edu.uq.degree": "工商管理硕士",
+    "edu.uq.meta": "澳大利亚布里斯班 · 2024年7月 - 2026年6月",
+    "edu.uq.detail": "双专业：国际商务与创新创业。CGPA 5.65 / 7.0。Honors: Certificate of Excellence, UQ Business School (IBUS7306); Career Transition recognition (MGTS7621)。",
+    "edu.western.school": "西安大略大学",
+    "edu.western.degree": "经济学文学学士",
+    "edu.western.meta": "加拿大伦敦 · 2018年9月 - 2023年4月",
+    "edu.western.detail": "课程：计量经济学、商业分析、统计学、国际金融、会计。",
+    "skills.h2": "技能",
+    "skills.s1.title": "数据分析",
+    "skills.s2.title": "咨询分析框架",
+    "skills.s3.title": "AI 智能体工具",
+    "skills.s4.title": "语言能力",
+    "life.h2": "生活与兴趣",
+    "life.i1": "网球",
+    "life.i2": "篮球",
+    "life.i3": "健身",
+    "life.i4": "阅读",
+    "life.i5": "探索 AI 工具",
+    "life.i6": "历史",
+    "life.i7": "社交拓展",
+    "life.i8": "艺术",
+    "life.i9": "创业活动",
+    "life.i10": "音乐",
+    "contact.h2": "欢迎联系。",
+    "contact.lead": "我正在积极寻找咨询、战略与国际商务领域的全职机会，并对 AI 赋能的工作方式充满兴趣。联系我最快捷的途径是电子邮件。",
+    "contact.email": "邮件联系",
+    "contact.resume": "下载简历",
+    "contact.location": "中国河南许昌",
+    "footer.credit": "校园照片来自 <a href=\"https://commons.wikimedia.org/wiki/File:Buildings_surrounding_the_Great_Court,_University_of_Queensland_03.jpg\">Wikimedia Commons</a>（CC BY-SA 4.0）"
+  }
+};
+
+(function () {
+  var LANG_KEY = "pl-lang";
+
+  function applyLang(lang) {
+    var dict = I18N[lang] || I18N.en;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n");
+      if (dict[key] != null) el.textContent = dict[key];
+    });
+    document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-html");
+      if (dict[key] != null) el.innerHTML = dict[key];
+    });
+    document.documentElement.lang = (lang === "zh") ? "zh-CN" : "en";
+    document.querySelectorAll(".lang-btn").forEach(function (btn) {
+      var on = btn.getAttribute("data-lang") === lang;
+      btn.classList.toggle("active", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+
+  function store(lang) {
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* private mode */ }
+  }
+
+  var param = new URLSearchParams(window.location.search).get("lang");
+  var initial = "en";
+  if (param === "zh" || param === "en") {
+    initial = param;
+  } else {
+    try { initial = localStorage.getItem(LANG_KEY) || "en"; } catch (e) { /* private mode */ }
+  }
+  applyLang(initial);
+
+  document.querySelectorAll(".lang-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var lang = btn.getAttribute("data-lang");
+      applyLang(lang);
+      store(lang);
+    });
+  });
+})();
+
 // Scroll reveal. IntersectionObserver only; transform + opacity only; honors reduced motion.
 (function () {
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
