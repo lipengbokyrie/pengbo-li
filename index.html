@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pengbo Li</title>
+<meta name="description" content="Personal site of Pengbo Li, Master of Business graduate from The University of Queensland, seeking roles in consulting, strategy and international business.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ------------------------------------------------------------------
+   Design system (taste-skill pass)
+   Read: personal career portfolio for recruiters, editorial-professional.
+   Dials: VARIANCE 6 / MOTION 3 / DENSITY 3.
+   One accent (forest), one radius system (cards 14px, buttons pill),
+   one theme per mode. Zero em-dashes. Serif display justified: this is
+   an editorial personal document; body is sans for screen reading.
+------------------------------------------------------------------- */
+:root {
+  --bg: #f5f6f3;
+  --surface: #fdfdfb;
+  --ink: #20231f;
+  --muted: #5b6057;
+  --accent: #2f5d4e;
+  --accent-ink: #ffffff;
+  --line: #e2e4de;
+  --radius: 14px;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Outfit", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #151713;
+    --surface: #1c1f1a;
+    --ink: #ecece5;
+    --muted: #9aa096;
+    --accent: #8fbfa8;
+    --accent-ink: #12201a;
+    --line: #2a2d26;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #151713;
+  --surface: #1c1f1a;
+  --ink: #ecece5;
+  --muted: #9aa096;
+  --accent: #8fbfa8;
+  --accent-ink: #12201a;
+  --line: #2a2d26;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+/* ---------- type ---------- */
+.display { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; }
+h2.display {
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  line-height: 1.12;
+  font-weight: 500;
+  margin-bottom: 36px;
+}
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.lead { font-size: 1.05rem; color: var(--muted); }
+.lead strong { color: var(--ink); font-weight: 500; }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  padding: 12px 26px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, color 0.2s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { opacity: 0.92; }
+.btn-ghost { border-color: var(--line); color: var(--ink); background: transparent; }
+.btn-ghost:hover { border-color: var(--muted); }
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  max-width: 1120px; margin: 0 auto; padding: 0 20px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; }
+.nav-links { display: flex; align-items: center; gap: 26px; }
+.nav-links a { font-size: 0.92rem; font-weight: 400; color: var(--muted); transition: color 0.2s ease; }
+.nav-links a:hover { color: var(--ink); }
+.nav-links .btn { padding: 8px 18px; font-size: 0.88rem; margin-left: 6px; }
+@media (max-width: 720px) {
+  .nav-links a:not(.btn) { display: none; }
+}
+
+/* ---------- hero ---------- */
+.hero { padding: 88px 0 72px; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+}
+.hero h1 {
+  font-size: clamp(3.1rem, 7.5vw, 5.2rem);
+  line-height: 1.04;
+  margin: 14px 0 20px;
+  font-weight: 600;
+}
+.hero .subtext { max-width: 34rem; margin-bottom: 32px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-fig {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+  max-width: 400px;
+  justify-self: end;
+}
+.hero-fig img { border-radius: 10px; width: 100%; }
+@media (max-width: 860px) {
+  .hero { padding: 56px 0 48px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-fig { order: -1; max-width: 320px; justify-self: start; }
+}
+
+/* ---------- sections ---------- */
+section { padding: 56px 0; }
+section + section, .band + section { border-top: 1px solid var(--line); }
+
+/* about */
+.about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: start; }
+.about-grid .lead p + p { margin-top: 16px; }
+.facts { display: grid; gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.fact { padding: 18px 22px; }
+.fact + .fact { border-top: 1px solid var(--line); }
+.fact .k { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: var(--accent); margin-bottom: 4px; }
+.fact .v { font-size: 0.98rem; color: var(--ink); }
+@media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+/* experience */
+.job { display: grid; grid-template-columns: 1fr auto; gap: 8px 24px; padding: 26px 0; border-top: 1px solid var(--line); }
+.job:last-of-type { padding-bottom: 0; }
+.job .title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 600; line-height: 1.2; }
+.job .meta { font-size: 0.92rem; color: var(--muted); margin-top: 4px; }
+.job .period { font-size: 0.92rem; color: var(--muted); text-align: right; white-space: nowrap; }
+.job ul { grid-column: 1 / -1; margin-top: 10px; padding-left: 18px; max-width: 46rem; }
+.job li { margin-bottom: 6px; color: var(--muted); }
+.job li:last-child { margin-bottom: 0; }
+@media (max-width: 640px) {
+  .job { grid-template-columns: 1fr; }
+  .job .period { text-align: left; }
+}
+
+/* education */
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.edu-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.edu-card .ph { aspect-ratio: 16 / 10; overflow: hidden; }
+.edu-card .ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.edu-card:hover .ph img { transform: scale(1.03); }
+.edu-card .bd { padding: 24px 26px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.edu-card .school { font-family: var(--font-display); font-size: 1.65rem; font-weight: 600; line-height: 1.15; }
+.edu-card .degree { font-weight: 400; font-size: 1rem; }
+.edu-card .meta { font-size: 0.9rem; color: var(--muted); }
+.edu-card .detail { font-size: 0.95rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 4px; }
+@media (max-width: 860px) { .edu-grid { grid-template-columns: 1fr; } }
+
+/* skills */
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.skill-tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 26px; }
+.skill-tile h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; margin-bottom: 12px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  font-size: 0.85rem; font-weight: 400; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px;
+  background: transparent;
+}
+@media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
+
+/* certifications */
+.cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.cert-card { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 24px; align-items: center; }
+.cert-doc {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--ink) 9%, transparent);
+}
+.cert-doc img { border-radius: 8px; width: 100%; }
+.cert-card .ct h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; line-height: 1.2; margin-bottom: 6px; }
+.cert-card .code { font-size: 0.85rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+.cert-card .note { font-size: 0.95rem; color: var(--muted); }
+@media (max-width: 860px) { .cert-grid { grid-template-columns: 1fr; } .cert-card { grid-template-columns: 1fr; max-width: 420px; } }
+
+/* life */
+.life-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.life-grid .p3 { margin-top: 36px; }
+.life-grid figure { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+.life-grid img { width: 100%; height: auto; display: block; }
+.interests { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 640px) {
+  .life-grid { grid-template-columns: 1fr; }
+  .life-grid .p3 { margin-top: 0; }
+}
+
+/* contact */
+.contact { padding-bottom: 84px; }
+.contact h2 { font-size: clamp(2.6rem, 6vw, 4rem); margin-bottom: 18px; }
+.contact .lead { max-width: 34rem; margin-bottom: 30px; }
+.contact-meta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px 34px; font-size: 0.95rem; color: var(--muted); }
+.contact-meta a:hover { color: var(--ink); }
+
+/* footer */
+footer { border-top: 1px solid var(--line); padding: 26px 0 34px; }
+.foot { display: flex; flex-wrap: wrap; gap: 8px 30px; justify-content: space-between; font-size: 0.85rem; color: var(--muted); }
+
+/* reveal motion (transform + opacity only, reduced-motion safe) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.in { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Pengbo Li</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
+      <a href="https://www.linkedin.com/in/pengbo-li-19b215273" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-primary" href="mailto:lipengbokyrie@gmail.com">Email me</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Master of Business · Class of 2026</p>
+        <h1 class="display">Pengbo Li</h1>
+        <p class="lead subtext">Master of Business graduate with international experience across China, Canada and Australia, seeking consulting and international business roles.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="mailto:lipengbokyrie@gmail.com">Email me</a>
+          <a class="btn btn-ghost" href="resume/Pengbo-Li-Resume.pdf" download>Download resume</a>
+        </div>
+      </div>
+      <figure class="hero-fig">
+        <img src="assets/photo-1.jpg" alt="Photo of Pengbo Li" width="933" height="1400">
+      </figure>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <h2 class="display reveal">About me</h2>
+      <div class="about-grid">
+        <div class="lead reveal">
+          <p>I am a Master of Business graduate from <strong>The University of Queensland</strong>, with a double major in International Business &amp; Innovation and Entrepreneurship, and international experience across China, Canada and Australia.</p>
+          <p>My practical experience spans procurement and supplier management in semiconductor manufacturing, business development, and financial advisory. I combine structured analytical frameworks with AI agent tools in my daily workflow, and I am seeking roles in consulting, strategy, international business and AI-related fields.</p>
+        </div>
+        <div class="facts reveal">
+          <div class="fact"><p class="k">Location</p><p class="v">Xuchang, Henan, China</p></div>
+          <div class="fact"><p class="k">Availability</p><p class="v">Open to Shanghai and business travel</p></div>
+          <div class="fact"><p class="k">Languages</p><p class="v">Mandarin (native), English (professional working proficiency)</p></div>
+          <div class="fact"><p class="k">LinkedIn</p><p class="v"><a href="https://www.linkedin.com/in/pengbo-li-19b215273" target="_blank" rel="noopener">linkedin.com/in/pengbo-li-19b215273</a></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <h2 class="display reveal">Experience</h2>
+
+      <div class="job reveal">
+        <div>
+          <p class="title">Anhui Changfei Advanced Semiconductor Co., Ltd.</p>
+          <p class="meta">Purchasing Engineer · Wuhu, China</p>
+        </div>
+        <p class="period">Oct 2023 - Jun 2024</p>
+        <ul>
+          <li>Managed end-to-end procurement plus supplier quality and risk assessments for a semiconductor packaging facility, coordinating internal technical teams and external suppliers to protect production schedules.</li>
+          <li>Analyzed procurement data across spare parts, tooling, consumables and outsourced manufacturing to locate cost-driver root causes, collaborating with packaging engineers on cost-reduction initiatives.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div>
+          <p class="title">Hercules Investment Group</p>
+          <p class="meta">Financial Advisor Assistant Intern · Toronto, Canada</p>
+        </div>
+        <p class="period">May 2022 - Aug 2022</p>
+        <ul>
+          <li>Collected and analyzed housing market and client financial data to identify financing needs, independently completing mortgage planning proposals for 8 client projects.</li>
+          <li>Built data visualizations to help portfolio managers explain HELOC and debt-financing options to clients with varying financial literacy.</li>
+        </ul>
+      </div>
+
+      <div class="job reveal">
+        <div>
+          <p class="title">Zhongzhen Security Technology Co., Ltd.</p>
+          <p class="meta">Business Development Intern · Xuchang, China</p>
+        </div>
+        <p class="period">Apr 2021 - Sep 2021</p>
+        <ul>
+          <li>Delivered customized security-camera solution proposals and coordinated delivery teams to complete 10+ projects on schedule, contributing to sales exceeding CNY 1,000,000.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <h2 class="display reveal">Education</h2>
+      <div class="edu-grid">
+        <article class="edu-card reveal">
+          <div class="ph"><img src="assets/uq-campus.jpg" alt="The sandstone Great Court at The University of Queensland, St Lucia campus" width="1600" height="1200" loading="lazy"></div>
+          <div class="bd">
+            <p class="school">The University of Queensland</p>
+            <p class="degree">Master of Business</p>
+            <p class="meta">Brisbane, Australia · Jul 2024 - Jun 2026</p>
+            <p class="detail">Double Major: International Business &amp; Innovation and Entrepreneurship. CGPA 5.65 / 7.0. Honors: Certificate of Excellence, UQ Business School (IBUS7306); Career Transition recognition (MGTS7621).</p>
+          </div>
+        </article>
+        <article class="edu-card reveal">
+          <div class="ph"><img src="assets/western-campus.jpg" alt="University College, the historic main building of Western University in London, Canada" width="1200" height="1600" loading="lazy"></div>
+          <div class="bd">
+            <p class="school">Western University</p>
+            <p class="degree">Bachelor of Arts, Economics</p>
+            <p class="meta">London, Canada · Sep 2018 - Apr 2023</p>
+            <p class="detail">Coursework: Econometrics, Business Analytics, Statistics, International Finance, Accounting.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2 class="display reveal">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-tile reveal">
+          <h3>Data &amp; Analytics</h3>
+          <div class="tags">
+            <span class="tag">Microsoft Excel</span><span class="tag">PowerPoint</span><span class="tag">Word</span><span class="tag">R programming</span><span class="tag">Data visualization</span><span class="tag">Quantitative analysis</span>
+          </div>
+        </div>
+        <div class="skill-tile reveal">
+          <h3>Consulting Frameworks</h3>
+          <div class="tags">
+            <span class="tag">PESTEL</span><span class="tag">Porter's Five Forces</span><span class="tag">VRIN / VRIO</span><span class="tag">Business model analysis</span><span class="tag">Stakeholder analysis</span>
+          </div>
+        </div>
+        <div class="skill-tile reveal">
+          <h3>AI Agent Tools</h3>
+          <div class="tags">
+            <span class="tag">Claude Code</span><span class="tag">ChatGPT</span><span class="tag">DeepSeek</span><span class="tag">VS Code</span><span class="tag">Prompt engineering</span><span class="tag">AI programming</span>
+          </div>
+        </div>
+        <div class="skill-tile reveal">
+          <h3>Languages</h3>
+          <div class="tags">
+            <span class="tag">Mandarin Chinese (native)</span><span class="tag">English (fluent professional working proficiency)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="wrap">
+      <h2 class="display reveal">Certifications</h2>
+      <div class="cert-grid">
+        <div class="cert-card reveal">
+          <div class="cert-doc"><img src="assets/cert-ibus7306.png" alt="Certificate of Excellence, UQ Business School, IBUS7306" width="595" height="842" loading="lazy"></div>
+          <div class="ct">
+            <h3>Certificate of Excellence, UQ Business School</h3>
+            <p class="code">IBUS7306</p>
+            <p class="note">Awarded during the Master of Business program at The University of Queensland.</p>
+          </div>
+        </div>
+        <div class="cert-card reveal">
+          <div class="cert-doc"><img src="assets/cert-mgts7621.png" alt="Career Transition recognition, UQ Business School, MGTS7621" width="596" height="842" loading="lazy"></div>
+          <div class="ct">
+            <h3>Career Transition Recognition</h3>
+            <p class="code">MGTS7621</p>
+            <p class="note">Awarded during the Master of Business program at The University of Queensland.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="life">
+    <div class="wrap">
+      <h2 class="display reveal">Life &amp; interests</h2>
+      <div class="life-grid">
+        <figure class="p2 reveal"><img src="assets/photo-2.jpg" alt="Personal photo" width="1400" height="1050" loading="lazy"></figure>
+        <figure class="p3 reveal"><img src="assets/photo-3.jpg" alt="Personal photo" width="1600" height="1066" loading="lazy"></figure>
+      </div>
+      <div class="interests reveal">
+        <span class="tag">Tennis</span><span class="tag">Basketball</span><span class="tag">Gym</span><span class="tag">Reading</span><span class="tag">Exploring AI tools</span><span class="tag">History</span><span class="tag">Networking</span><span class="tag">Arts</span><span class="tag">Entrepreneurial events</span><span class="tag">Music</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2 class="display reveal">Let's talk.</h2>
+      <p class="lead reveal">I am currently exploring full-time opportunities in consulting, strategy and international business, with a strong interest in AI-enabled ways of working. The fastest way to reach me is email.</p>
+      <div class="hero-ctas reveal">
+        <a class="btn btn-primary" href="mailto:lipengbokyrie@gmail.com">Email me</a>
+        <a class="btn btn-ghost" href="resume/Pengbo-Li-Resume.pdf" download>Download resume</a>
+      </div>
+      <p class="contact-meta reveal">
+        <a href="mailto:lipengbokyrie@gmail.com">lipengbokyrie@gmail.com</a>
+        <a href="tel:+8615913690856">+86 159 9361 0856</a>
+        <a href="https://www.linkedin.com/in/pengbo-li-19b215273" target="_blank" rel="noopener">LinkedIn</a>
+        <span>Xuchang, Henan, China</span>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>© 2026 Pengbo Li</p>
+    <p><a href="https://www.linkedin.com/in/pengbo-li-19b215273" target="_blank" rel="noopener">LinkedIn</a></p>
+    <p>Campus photos via <a href="https://commons.wikimedia.org/wiki/File:Buildings_surrounding_the_Great_Court,_University_of_Queensland_03.jpg">Wikimedia Commons</a> (CC BY-SA 4.0)</p>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal. IntersectionObserver only; transform + opacity only; honors reduced motion.
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var els = document.querySelectorAll(".reveal");
+  if (reduce || !("IntersectionObserver" in window)) {
+    els.forEach(function (el) { el.classList.add("in"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
